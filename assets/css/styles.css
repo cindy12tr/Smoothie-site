@@ -1,0 +1,675 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lora:wght@500;600&family=Poppins:wght@400;500&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: #4F5EA3;
+  --first-color-alt: hsl(19, 64%, 52%);
+  --title-color: hsl(19, 16%, 15%);
+  --text-color: hsl(19, 16%, 35%);
+  --text-color-light: hsl(19, 8%, 55%);
+  --body-color: #fff;
+  --container-color: hsl(19, 100%, 97%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Poppins", sans-serif;
+  --title-font: "Lora", serif;
+  --subtitle-font: "Dancing Script", cursive;
+  --biggest-font-size: 2.25rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+@media screen and (min-width: 1024px) {
+  :root {
+    --biggest-font-size: 4rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+  transition: background 0.4s; /* for dark mode animation */
+}
+
+h1, h2, h3 {
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+  
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/*=============== THEME ===============*/
+.nav-buttons{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.change-theme{
+  font-size: 1.25rem;
+  color: var(--title-color);
+  transition: .3s;
+}
+
+/*========== Variables Dark theme ==========*/
+body.dark-theme{
+  --first-color: #4F5EA3;
+  --first-color-alt: hsl(19, 64%, 52%);
+  --title-color: hsl(19, 16%, 15%);
+  --text-color: hsl(19, 16%, 35%);
+  --text-color-light: hsl(19, 8%, 55%);
+  --body-color: rgb(76, 55, 55);
+  --container-color: black;
+}
+
+/*========== 
+    Color changes in some parts of 
+    the website, in light theme
+==========*/
+
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+
+.section {
+  padding: 7rem 10rem;
+  
+}
+
+.main {
+  overflow: hidden; /* For animation ScrollReveal */
+}
+
+/*=============== HEADER & NAV ===============*/
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--body-color);
+  z-index: var(--z-fixed);
+  transition: box-shadow .3s, background .4s;
+}
+.nav{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5rem;
+}
+.nav-logo,.nav-toggle,.nav-close{
+  display: flex;
+  color: var(--title-color);
+}
+.nav-logo{
+  font-family: var(--title-font);
+  font-weight: var(--font-semi-bold);
+  font-size: var(--h3-font-size);
+  transition: color .3s;
+}
+.nav-logo:hover{
+  color: var(--first-color);
+}
+.nav-toggle{
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.nav-toggle:hover{
+  color: var(--first-color);
+}
+@media screen and (max-width:760px) {
+  .nav-menu{
+    position: fixed;
+    top: -100%;
+    left: 0;
+    background-color: var(--body-color);
+    width: 100%;
+    padding-block: 3.5rem;
+    transition: top .4s ease-in-out;
+    box-shadow: 0 8px 20px hsla(19, 64%, 24%, .1);
+  }
+}
+.nav-items{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  row-gap: 2rem;
+}
+.nav-item{
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+  transition: color .4s;
+}
+.nav-item a{
+  color: var(--title-color);
+}
+.nav-item a:hover{
+  color: var(--first-color);
+}
+.active-nav a{
+  color: var(--first-color) !important;
+}
+.nav-close{
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.nav-image-1,.nav-image-2{
+  position: absolute;
+  opacity: .2;
+}
+.nav-image-1{
+  width: 100px;
+  left: -2rem;
+  transform: rotate(165deg);
+}
+.nav-image-2{
+  width: 50px;
+  right: -1rem;
+  bottom: 0;
+  transform: rotate(-30deg);
+}
+
+/* Show menu */
+.show-menu{
+  top: 0;
+}
+
+/* Change background header */
+
+.bg-header{
+  box-shadow: 0 2px 8px hsla(19, 64%, 24%, .5);
+}
+/* Active link */
+
+
+/*=============== HOME ===============*/
+.home{
+  margin-top: 2rem;
+  position: relative;
+}
+.home-con{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.5rem;
+}
+.right-con {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.right-con img{
+  
+}
+.left-con{
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 5rem;
+}
+.left-con h1{
+  font-size: var(--biggest-font-size);
+  font-family: var(--title-font);
+  margin-bottom: 1rem;
+}
+.left-con p{
+  margin-bottom: 2rem;
+  font-size: var(--h3-font-size);
+}
+
+.home-leaf-1,.home-leaf-2{
+  position: absolute;
+  opacity: 0.6;
+}
+.home-leaf-1{
+  width: 80px;
+  top: 8rem;
+  left: -1rem;
+  transform: rotate(90deg);
+}
+.home-leaf-2{
+  width: 100px;
+  right: -2rem;
+  bottom: 5rem;
+  transform: rotate(-15deg);
+}
+
+/*=============== BUTTON ===============*/
+.main-btn{
+  border: 1px solid grey;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  color: black;
+  font-size: var(--font-medium);
+  font-weight: var(--font-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: .4s;
+  
+}
+.main-btn i{
+  font-size: 1.5rem;
+  transition: .3s;
+  
+}
+.main-btn:hover{
+  background-color: var(--first-color);
+  color: white;
+}
+.main-btn:hover i{
+  transform: translateX(.25rem);
+}
+
+/*=============== ABOUT ===============*/
+.about-con{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.5rem;
+}
+.about-con h1{
+  font-family: var(--subtitle-font);
+  color: rgb(148, 215, 46);
+}
+.left-con h2{
+  margin-bottom: 1rem;
+}
+
+/*=============== POPULAR ===============*/
+.popular{
+  position: relative;
+}
+.popular-title,.popular-subtitle{
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.popular-title{
+  font-family: var(--subtitle-font);
+  font-size: var(--biggest-font-size);
+}
+.popular-con{
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+  grid-gap: 1.5rem;
+  padding: 0 5rem;
+}
+.populer-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 1rem;
+  background-color: #4F5EA3;
+  box-shadow: 0 8px 20px rgba(201, 181, 204, 0.8);
+}
+.populer-item:hover.populer-item img{
+  transform: translateY(-.25rem);
+}
+.populer-item img{
+  height: 250px;
+  transition: 0.4s;
+}
+.populer-item h3{
+  margin-top: 1rem;
+  font-family: var(--title-font);
+  font-size: var(--h3-font-size);
+  margin-bottom: .25rem;
+  color: rgb(252, 210, 210);
+}
+.desc{
+  margin-bottom: .25rem;
+  display: block;
+  font-size: var(--smaller-font-size);
+  color: rgb(235, 206, 206);
+}
+.price{
+  font-size: var(--h3-font-size);
+  color: rgb(210, 183, 183);
+  font-weight: var(--font-medium);
+  margin-bottom: 1rem;
+}
+.popular-btn{
+  background-color: rgb(242, 78, 106);
+  padding: 6px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 1.25rem;
+  position: absolute;
+  bottom: 1rem;
+  right: 2rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition:  background 0.3s;
+  display: flex;
+  box-shadow: 0 4px 20px hsla(19, 64%, 24%, .2);
+}
+.popular-btn:hover{
+  opacity: 1;
+}
+
+/*=============== RECENTLY ===============*/
+.recently-con{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.5rem;
+}
+.recently-con h1{
+  font-family: var(--subtitle-font);
+}
+.recently-con h2{
+  color: #333;
+  font-family: var(--title-font);
+}
+.recently-con img{
+  height: 500px;
+  margin: 0 5rem;
+}
+
+/*=============== NEWSLETTER ===============*/
+.newsletter{
+  padding: 5rem 15rem;
+}
+.news-con{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 2rem;
+}
+.news-con .left-con{
+  background-color: #4F5EA3;
+  margin-left: -4rem;
+  
+}
+.news-con h1{
+  font-family: var(--subtitle-font);
+}
+.news-con img{
+  height: 320px;
+  width: 500px;
+  flex-direction: flex-end;
+}
+.news-form {
+  position: relative;
+}
+.news-form input{
+padding: 1rem 2rem;
+border-radius: 2rem;
+outline: none;
+border: none;
+}
+
+.news-btn{
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  padding: 0.95rem 1rem;
+  border-radius: 2rem;
+  font-size: var(--smaller-font-size);
+  outline: none;
+  border: 1px solid lightgrey;
+  transition: 0.4s;
+  cursor: pointer;
+}
+.news-btn:hover{
+  background-color: #4F5EA3;
+  color: white;
+}
+.news-btn:hover i{
+  font-family: var(--title-font);
+}
+
+/*=============== FOOTER ===============*/
+.footer{
+  padding: 3rem 8rem;
+  background-color: pink;
+}
+.footer-con{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+}
+.footer-item{
+  max-width: 200px;
+}
+.footer-item a{
+  color: #333;
+  opacity: 0.8;
+  
+}
+.logo{
+  margin-bottom: 0.5rem;
+}
+.footer-item ul{
+  margin-top: .5rem;
+}
+
+.footer-item a:hover{
+  opacity: 1;
+}
+.social-links a i{
+  font-size: 1.3rem;
+  margin-right: 1rem;
+  color: #4F5EA3;
+}
+.footer-img{
+  text-align: center;
+  margin-top: 2rem;
+}
+.footer-card img{
+  width: 50px;
+}
+.copy{
+  color: grey;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar{
+  width: .6rem;
+  border-radius: .5rem;
+  background-color: rgb(238, 223, 206);
+}
+::-webkit-scrollbar-thumb{
+  border-radius: .5rem;
+  background-color: rgb(214, 184, 152);
+}
+::-webkit-scrollbar-thumb:hover{
+  background-color: rgb(145, 122, 102);
+}
+
+/*=============== SCROLL UP ===============*/
+.scrollup{
+  position: fixed;
+  right: 1rem;
+  bottom: -50%;
+  background-color: #4F5EA3;
+  padding: .8rem;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  color: white;
+  z-index: var(--z-tooltip);
+  transition: .3s;
+}
+.scrollup:hover{
+  transform: translateY(-.25rem);
+}
+
+/* Show Scroll Up*/
+.show-scroll{
+  bottom: 3rem;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+  
+  
+  .left-con h1{
+    font-size: 2rem;
+  }
+  .home-leaf-1{
+    width: 60px;
+  }
+  .home-leaf-2{
+    width: 80px;
+  }
+  
+  .footer{
+    padding: 2rem;
+  }
+  .footer-con{
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 1rem;
+  }
+  .footer-item h3{
+    font-size: .9rem;
+  }
+  .footer-card img{
+    width: 35px;
+  }
+  .copy{
+    font-size: .8rem;
+  }
+}
+
+/* For medium devices */
+@media screen and (max-width: 760px){
+  .section{
+    padding: 5rem 3rem 2rem;
+  }
+
+  .home-con,.about-con,.recently-con,.news-con{
+    grid-template-columns: 1fr;
+  }
+  .left-con p{
+    max-width: 350px;
+  }
+  
+  .right-con img{
+    width: 70%;
+  }
+  .left-con{
+    padding: 0;
+  }
+  
+  .recently-con img{
+    height: 350px;
+  }
+  .newsletter{
+    padding: 1rem 8rem;
+  
+  }
+  .news-con .left-con{
+    margin-left: 0;
+  }
+  .news-form input{
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  .news-btn{
+    right: 0;
+    padding: 1rem;
+  }
+  .footer{
+    padding: 3rem;
+  }
+  .footer-con{
+    grid-gap: 2rem;
+  }
+}
+@media screen and (min-width: 761px){
+  
+  .nav-toggle,.nav-close,.nav-image-1,.nav-image-2{
+    display: none;
+  }
+  .nav-menu{
+    margin-left: auto;
+  }
+  .nav-items{
+    flex-direction: row;
+    gap: 3rem;
+  }
+}
+/* For large devices */
+@media screen and (max-width: 850px){
+  .section{
+    padding: 5rem 3rem 1rem;
+
+  }
+  .left-con p{
+    min-width: 200px;
+  }
+  .right-con img{
+    min-width: 300px;
+  }
+}
+@media screen and (max-width: 1020px){
+  .section{
+    padding: 5rem;
+  }
+  .popular-con{
+    padding: 0;
+  }
+  .recently-con img{
+    height: 300px;
+  }
+  .newsletter{
+    padding: 5rem 0;
+  }
+  
+}
